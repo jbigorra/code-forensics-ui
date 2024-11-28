@@ -1,0 +1,25 @@
+{
+  "name": "repo-analyser-web",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rspack build",
+    "dev": "cross-env NODE_ENV=development rspack serve",
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@rspack/cli": "^1.0.14",
+    "@rspack/core": "^1.0.14",
+    "chart.js": "^4.4.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.12.0",
+    "globals": "^15.11.0",
+    "papaparse": "^5.4.1",
+    "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.3"
+  }
+}
