@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Repo Analyser</title>
+    <link rel="stylesheet" href="src/assets/css/index.css" />
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/async-alpine@2.x.x/dist/async-alpine.script.js"></script> -->
+    <script defer src="src/main.js" type="module"></script>
+  </head>
+  <body id="root">
+    <div id="content" class="content">
+      <header>
+        <h1>Repo Analyser</h1>
+      </header>
+      <menu>
+        <ul>
+          <li><a href="#marketplace-mf">Marketplace MF</a></li>
+          <li><a href="#marketplace-service">Marketplace Service</a></li>
+          <li><a href="">placeholder</a></li>
+        </ul>
+      </menu>
+      <section id="marketplace-mf">
+        <h2>Marketplace MF</h2>
+        <section id="marketplace-mf-authors" x-data="marketplace">
+          <details>
+            <summary>Number of authors & commits per file</summary>
+            <canvas id="marketplace-mf-authors-commits"></canvas>
+          </details>
+          <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div x-data="{ filteredFiles: '' }">
+              <label for="filter-files">Filter files:</label>
+              <select name="filter-entity" id="filter-entity" x-model="filteredFiles" multiple>
+                <option value="">disabled</option>
+                <option value="tests">test files</option>
+                <option value="json">json files</option>
+              </select>
+            </div>
+            <div x-data="{ authors: -1 }">
+              <label for="authors">Number of authors</label>
+              <input name="authors" type="number" min="-1" max="200" @change.debounce.250="onAuthorsRangeChange" x-model.number="authors" />
+              <span x-text="authors === -1 ? 'disabled' : authors"></span>
+            </div>
+            <div x-data="{ commits: -1 }">
+              <label for="commits">Number of commits</label>
+              <input name="commits" type="range" min="-1" max="100" step="1" x-model.number="commits" />
+              <span x-text="commits === -1 ? 'disabled' : commits"></span>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section id="marketplace-service">
+        <h2>Marketplace Service</h2>
+        <section id="marketplace-service-authors">
+          <details>
+            <summary>n-authors vs n-commits</summary>
+            <canvas id="marketplace-service-authors-commits"></canvas>
+          </details>
+        </section>
+      </section>
+      <div>
+        <h2>Diana counter</h2>
+        <div x-data="{ count: 0}">
+          <button @click="count++">Increment</button>
+          <span x-text="count"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
