@@ -1,0 +1,6 @@
+
+Todo:
+  - [] As a user, I want to see the possible filter values prefilled in the filter controllers
+    - [] Display the possible values for the file types filter to exclude files: spec.{ts,js}, .json files, .lock files, etc.
+    - [] Display the possible range of values for filters like: number of authors, number of commits, etc, based on the actual min and max values in the data.
+
