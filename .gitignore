@@ -16,4 +16,5 @@ dist/
 # analyser
 /rust-analyser/
 
-/public/files/*
+*/public/*.csv
+csvs/
