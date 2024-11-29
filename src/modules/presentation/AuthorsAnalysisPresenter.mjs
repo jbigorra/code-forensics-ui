@@ -1,9 +1,8 @@
-
 import { AbstractSystemView } from './SystemView.mjs'
 import { parseCSV } from '../infrastructure/apis/CSVParser.mjs'
+import { DEV_SERVER } from '../infrastructure/config/Constants.mjs'
 
 export class AuthorsAnalysisPresenter extends AbstractSystemView {
-
   /**
    * @constructor
    * @param {Alpine} alpine
@@ -26,7 +25,7 @@ export class AuthorsAnalysisPresenter extends AbstractSystemView {
   }
 
   async _onInit() {
-    this.dataset = await parseCSV('http://localhost:5500/public/files/marketplace-mf-component/authors.csv')
+    this.dataset = await parseCSV(`${DEV_SERVER}/authors.csv`)
     this.authorsAnalysisView.renderChart(this.dataset)
   }
 
