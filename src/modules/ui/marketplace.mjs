@@ -9,7 +9,6 @@ class EntityVsAuthorAndCommitsChart {
   }
 
   renderChart(dataset) {
-    debugger
     if (this.chartInstance) {
       this.chartInstance.destroy()
     }
@@ -57,7 +56,6 @@ class EntityVsAuthorAndCommitsChart {
   }
 }
 
-
 /**
  * @typedef {Object} AuthorsAnalysisView
  * @property {Object|null} chart - The chart instance.
@@ -76,7 +74,7 @@ export const marketplace = {
 
     this.chart.renderChart(dataset)
   },
-  onAuthorsRangeChange: null,
+  onAuthorsRangeChange: null
 }
 
 /**
