@@ -2,9 +2,9 @@
   "name": "foran",
   "version": "0.1.0",
   "description": "A CLI tool for code forensics analysis",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "bin": {
-    "foran": "./dist/index.js"
+    "foran": "./dist/main.js"
   },
   "scripts": {
     "build": "tsc",
@@ -13,14 +13,21 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "npm run build",
-    "start": "node dist/index.js"
+    "start": "node dist/main.js"
   },
-  "keywords": ["cli", "code-forensics", "analysis", "git"],
+  "keywords": [
+    "cli",
+    "code-forensics",
+    "analysis",
+    "git"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^20.10.0",
+    "@types/papaparse": "^5.3.15",
     "commander": "^11.1.0",
+    "papaparse": "^5.4.1",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.8.0",
     "typescript": "^5.3.2"
@@ -30,7 +37,7 @@
     "@typescript-eslint/parser": "^6.12.0",
     "eslint": "^8.54.0",
     "prettier": "^3.1.0",
-    "vitest": "^1.0.0"
+    "vitest": "^3.0.8"
   },
   "publishConfig": {
     "access": "public"
