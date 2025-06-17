@@ -1,4 +1,4 @@
-import { ICodeMaatService } from "../../../application/interfaces";
+import { ICodeMaatService } from "../../application/interfaces";
 import { injectable } from "tsyringe";
 import { promisify } from "util";
 import { exec } from "child_process";
@@ -11,7 +11,8 @@ type CodeMaatAnalysis =
   "coupling"              | "entity-churn"      | "entity-effort" |
   "entity-ownership"      | "fragmentation"     | "identity"      |
   "main-dev"              | "main-dev-by-revs"  | "messages"      |
-  "refactoring-main-dev"  | "revisions"         | "soc";
+  "refactoring-main-dev"  | "revisions"         | "soc"           |
+  "age"                   | "abs-churn"         | "author-churn";
 
 type CodeMaatCommandString = string;
 

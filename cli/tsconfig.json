@@ -5,7 +5,7 @@
     "lib": ["ES2022"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "src.old",
     "strict": true,
     "types": ["node", "vitest"],
     "esModuleInterop": true,
@@ -16,6 +16,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
+  "include": ["src.old/**/*"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }
