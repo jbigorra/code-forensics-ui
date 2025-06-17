@@ -1,0 +1,15 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# For Typescript & Javascript projects
+- You use jest as testing tool
+- You use jest-mock-extended to create mocks
+- You use fakerjs to fake (but realistic) data for testing and development.
+- You use factory.ts to ease creation of factories for test data for Typescript
+- You use cypress to create integration and e2e ui tests
+- Use TypeScript for all code; prefer interfaces over types.
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript interfaces.
+- Favor named exports for components.
