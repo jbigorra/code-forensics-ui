@@ -3,7 +3,21 @@ body {
   color: #000;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  background-image: linear-gradient(to bottom, #fff, #fff);
+
+  background: url('../../assets/images/dotted-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.parallax {
+  position: fixed;
+  inset: 0;
+  background: url('dots-bg.svg') repeat;
+  background-size: cover;
+  z-index: -1;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .content {

@@ -1,0 +1,475 @@
+author,peer,shared,average,strength
+Sennder Machine User,Matcha,1,1,100
+Sennder Machine User,Developer Portal Bot,1,1,100
+Matcha,Sennder Machine User,1,1,100
+Matcha,Developer Portal Bot,1,1,100
+Developer Portal Bot,Matcha,1,1,100
+Developer Portal Bot,Sennder Machine User,1,1,100
+Yashwanth Harikrishnan,Sanja Mitrovic,642,960,66
+Sanja Mitrovic,Yashwanth Harikrishnan,642,960,66
+Mikhail Kachala,Jack Mayer,2,3,66
+Jack Mayer,Mikhail Kachala,2,3,66
+Sergei Zaliubovskii,Sanja Mitrovic,418,801,52
+Sanja Mitrovic,Sergei Zaliubovskii,418,801,52
+Yashwanth Harikrishnan,Sergei Zaliubovskii,345,665,51
+Sergei Zaliubovskii,Yashwanth Harikrishnan,345,665,51
+Mikhail Kachala,InfraOps Bot - Renovate,2,4,50
+Juan,Atharva Pathak,1,2,50
+Jack Mayer,InfraOps Bot - Renovate,2,4,50
+InfraOps Bot - Renovate,Jack Mayer,2,4,50
+InfraOps Bot - Renovate,Mikhail Kachala,2,4,50
+Atharva Pathak,Juan,1,2,50
+Pablo Felipe Leonhart,Dmytro Fokin,45,101,44
+Dmytro Fokin,Pablo Felipe Leonhart,45,101,44
+Murali Mariappan,Alexey Ivanov,123,309,39
+Alexey Ivanov,Murali Mariappan,123,309,39
+sennder,Sergej Herbert,6,16,37
+Sergej Herbert,sennder,6,16,37
+Pol Ortiz,Miša Vučićević,5,14,35
+Miša Vučićević,Pol Ortiz,5,14,35
+Miša Vučićević,Dmytro Filipenko,7,20,35
+Joel Pinto Ribeiro,Damilola Adeyemi,5,14,35
+Dmytro Filipenko,Miša Vučićević,7,20,35
+Damilola Adeyemi,Joel Pinto Ribeiro,5,14,35
+Mikhail Kachala,Damilola Adeyemi,2,6,33
+Mikhail Kachala,Alena Volchanskaya,1,3,33
+Juan,Alena Volchanskaya,1,3,33
+Jack Mayer,Alena Volchanskaya,1,3,33
+Jack Mayer,Damilola Adeyemi,2,6,33
+InfraOps Bot - Renovate,Damilola Adeyemi,2,6,33
+Damilola Adeyemi,InfraOps Bot - Renovate,2,6,33
+Damilola Adeyemi,Jack Mayer,2,6,33
+Damilola Adeyemi,Mikhail Kachala,2,6,33
+Atharva Pathak,Alena Volchanskaya,1,3,33
+Alena Volchanskaya,Juan,1,3,33
+Alena Volchanskaya,Jack Mayer,1,3,33
+Alena Volchanskaya,Mikhail Kachala,1,3,33
+Alena Volchanskaya,Atharva Pathak,1,3,33
+Sergei Zaliubovskii,Pablo Felipe Leonhart,103,320,32
+Samuel Vasco,Manu Ustenko,16,50,32
+Pablo Felipe Leonhart,Sergei Zaliubovskii,103,320,32
+Manu Ustenko,Samuel Vasco,16,50,32
+Sanja Mitrovic,Murali Mariappan,217,697,31
+Murali Mariappan,Sanja Mitrovic,217,697,31
+Sergej Herbert,Damilola Adeyemi,3,11,27
+Damilola Adeyemi,Sergej Herbert,3,11,27
+Yashwanth Harikrishnan,Pablo Felipe Leonhart,124,480,25
+Sergej Herbert,Mikhail Kachala,2,8,25
+Sergej Herbert,Alena Volchanskaya,2,8,25
+Sergej Herbert,Jack Mayer,2,8,25
+Sanja Mitrovic,Alexey Ivanov,184,708,25
+Pablo Felipe Leonhart,Yashwanth Harikrishnan,124,480,25
+Pablo Felipe Leonhart,Manu Ustenko,27,104,25
+Mikhail Kachala,Sergej Herbert,2,8,25
+Manu Ustenko,Pablo Felipe Leonhart,27,104,25
+Jack Mayer,Sergej Herbert,2,8,25
+InfraOps Bot - Renovate,Alena Volchanskaya,1,4,25
+Alexey Ivanov,Sanja Mitrovic,184,708,25
+Alena Volchanskaya,InfraOps Bot - Renovate,1,4,25
+Alena Volchanskaya,Sergej Herbert,2,8,25
+Yashwanth Harikrishnan,Murali Mariappan,137,561,24
+Sergei Zaliubovskii,Murali Mariappan,100,402,24
+Murali Mariappan,Sergei Zaliubovskii,100,402,24
+Murali Mariappan,Yashwanth Harikrishnan,137,561,24
+Sergei Zaliubovskii,Alexey Ivanov,95,413,23
+Pol Ortiz,Dmytro Filipenko,5,21,23
+Dmytro Filipenko,Pol Ortiz,5,21,23
+Alexey Ivanov,Sergei Zaliubovskii,95,413,23
+Sergej Herbert,InfraOps Bot - Renovate,2,9,22
+Manu Ustenko,Dmytro Fokin,16,70,22
+InfraOps Bot - Renovate,Sergej Herbert,2,9,22
+Dmytro Fokin,Manu Ustenko,16,70,22
+Yashwanth Harikrishnan,Alexey Ivanov,118,572,20
+Sergei Zaliubovskii,Dmytro Fokin,59,286,20
+Dmytro Fokin,Sergei Zaliubovskii,59,286,20
+Alexey Ivanov,Yashwanth Harikrishnan,118,572,20
+sennder,Manu Ustenko,9,46,19
+Samuel Vasco,Dmytro Fokin,9,47,19
+Manu Ustenko,sennder,9,46,19
+Dmytro Fokin,Samuel Vasco,9,47,19
+sennder,Jack Mayer,2,11,18
+sennder,Alena Volchanskaya,2,11,18
+Sanja Mitrovic,Pablo Felipe Leonhart,115,616,18
+Pablo Felipe Leonhart,Sanja Mitrovic,115,616,18
+Jack Mayer,sennder,2,11,18
+Alena Volchanskaya,sennder,2,11,18
+Juan Bigorra,Joel Pinto Ribeiro,7,41,17
+Joel Pinto Ribeiro,Juan Bigorra,7,41,17
+sennder,Dmytro Fokin,7,42,16
+Samuel Vasco,Damilola Adeyemi,3,18,16
+Mikhail Kachala,Joel Pinto Ribeiro,2,12,16
+Joel Pinto Ribeiro,Jack Mayer,2,12,16
+Joel Pinto Ribeiro,InfraOps Bot - Renovate,2,12,16
+Joel Pinto Ribeiro,Mikhail Kachala,2,12,16
+Joel Pinto Ribeiro,Dmytro Fokin,7,43,16
+Jack Mayer,Joel Pinto Ribeiro,2,12,16
+InfraOps Bot - Renovate,Joel Pinto Ribeiro,2,12,16
+Dmytro Fokin,Joel Pinto Ribeiro,7,43,16
+Dmytro Fokin,sennder,7,42,16
+Damilola Adeyemi,Samuel Vasco,3,18,16
+Damilola Adeyemi,Alena Volchanskaya,1,6,16
+Alena Volchanskaya,Damilola Adeyemi,1,6,16
+sennder,Pablo Felipe Leonhart,12,77,15
+Sergej Herbert,Samuel Vasco,3,20,15
+Sergei Zaliubovskii,Manu Ustenko,46,289,15
+Samuel Vasco,Sergej Herbert,3,20,15
+Pablo Felipe Leonhart,sennder,12,77,15
+Manu Ustenko,Sergei Zaliubovskii,46,289,15
+Sergej Herbert,Sennder Machine User,1,7,14
+Sergej Herbert,Developer Portal Bot,1,7,14
+Sergej Herbert,Matcha,1,7,14
+Sennder Machine User,Sergej Herbert,1,7,14
+Matcha,Sergej Herbert,1,7,14
+Juan Bigorra,Dmytro Fokin,9,64,14
+Juan Bigorra,Damilola Adeyemi,5,35,14
+Dmytro Fokin,Juan Bigorra,9,64,14
+Developer Portal Bot,Sergej Herbert,1,7,14
+Damilola Adeyemi,Juan Bigorra,5,35,14
+Yashwanth Harikrishnan,Dmytro Fokin,58,445,13
+Sergej Herbert,Manu Ustenko,6,43,13
+Samuel Vasco,Jack Mayer,2,15,13
+Samuel Vasco,Mikhail Kachala,2,15,13
+Pablo Felipe Leonhart,Murali Mariappan,30,217,13
+Murali Mariappan,Pablo Felipe Leonhart,30,217,13
+Mikhail Kachala,Samuel Vasco,2,15,13
+Manu Ustenko,Sergej Herbert,6,43,13
+Jack Mayer,Samuel Vasco,2,15,13
+Dmytro Fokin,Yashwanth Harikrishnan,58,445,13
+sennder,Juan Bigorra,5,40,12
+Sergej Herbert,Juan,1,8,12
+Sergej Herbert,Atharva Pathak,1,8,12
+Sergej Herbert,Pablo Felipe Leonhart,9,74,12
+Sergej Herbert,Artem Kovshov,1,8,12
+Samuel Vasco,Joel Pinto Ribeiro,3,24,12
+Samuel Vasco,InfraOps Bot - Renovate,2,16,12
+Pablo Felipe Leonhart,Sergej Herbert,9,74,12
+Juan Bigorra,sennder,5,40,12
+Juan,Sergej Herbert,1,8,12
+Joel Pinto Ribeiro,Samuel Vasco,3,24,12
+InfraOps Bot - Renovate,Samuel Vasco,2,16,12
+Atharva Pathak,Sergej Herbert,1,8,12
+Artem Kovshov,Sergej Herbert,1,8,12
+Yashwanth Harikrishnan,Manu Ustenko,53,449,11
+Sergej Herbert,Joel Pinto Ribeiro,2,17,11
+Samuel Vasco,Pablo Felipe Leonhart,9,81,11
+Pablo Felipe Leonhart,Joel Pinto Ribeiro,9,78,11
+Pablo Felipe Leonhart,Samuel Vasco,9,81,11
+Manu Ustenko,Yashwanth Harikrishnan,53,449,11
+Manu Ustenko,Juan Bigorra,8,68,11
+Juan Bigorra,Manu Ustenko,8,68,11
+Joel Pinto Ribeiro,Pablo Felipe Leonhart,9,78,11
+Joel Pinto Ribeiro,Sergej Herbert,2,17,11
+sennder,Matcha,1,10,10
+sennder,Atharva Pathak,1,10,10
+sennder,Juan,1,10,10
+sennder,Sennder Machine User,1,10,10
+sennder,Developer Portal Bot,1,10,10
+Sergej Herbert,Dmytro Fokin,4,40,10
+Sergej Herbert,Juan Bigorra,4,38,10
+Sennder Machine User,sennder,1,10,10
+Sanja Mitrovic,Dmytro Fokin,62,581,10
+Samuel Vasco,Miša Vučićević,2,20,10
+Miša Vučićević,Samuel Vasco,2,20,10
+Matcha,sennder,1,10,10
+Juan Bigorra,Sergej Herbert,4,38,10
+Juan,sennder,1,10,10
+Dmytro Fokin,Sanja Mitrovic,62,581,10
+Dmytro Fokin,Sergej Herbert,4,40,10
+Developer Portal Bot,sennder,1,10,10
+Atharva Pathak,sennder,1,10,10
+sennder,InfraOps Bot - Renovate,1,11,9
+sennder,Artem Kovshov,1,11,9
+sennder,Mikhail Kachala,1,11,9
+Samuel Vasco,Pol Ortiz,2,21,9
+Pol Ortiz,Samuel Vasco,2,21,9
+Pablo Felipe Leonhart,Juan Bigorra,9,99,9
+Miša Vučićević,Damilola Adeyemi,1,11,9
+Mikhail Kachala,sennder,1,11,9
+Juan Bigorra,Pablo Felipe Leonhart,9,99,9
+Juan Bigorra,InfraOps Bot - Renovate,3,33,9
+InfraOps Bot - Renovate,Juan Bigorra,3,33,9
+InfraOps Bot - Renovate,sennder,1,11,9
+Damilola Adeyemi,Miša Vučićević,1,11,9
+Artem Kovshov,sennder,1,11,9
+sennder,Samuel Vasco,2,23,8
+Samuel Vasco,sennder,2,23,8
+Pol Ortiz,Damilola Adeyemi,1,12,8
+Joel Pinto Ribeiro,Alena Volchanskaya,1,12,8
+Jack Mayer,Dmytro Fokin,3,35,8
+Dmytro Fokin,Damilola Adeyemi,3,37,8
+Dmytro Fokin,Jack Mayer,3,35,8
+Dmytro Filipenko,Alexey Ivanov,14,173,8
+Damilola Adeyemi,Dmytro Fokin,3,37,8
+Damilola Adeyemi,Pol Ortiz,1,12,8
+Alexey Ivanov,Dmytro Filipenko,14,173,8
+Alena Volchanskaya,Joel Pinto Ribeiro,1,12,8
+sennder,Damilola Adeyemi,1,13,7
+Yashwanth Harikrishnan,Juan Bigorra,35,443,7
+Sergej Herbert,Miša Vučićević,1,13,7
+Sergej Herbert,Pol Ortiz,1,14,7
+Sergei Zaliubovskii,Samuel Vasco,19,266,7
+Sanja Mitrovic,Manu Ustenko,42,585,7
+Samuel Vasco,Sergei Zaliubovskii,19,266,7
+Samuel Vasco,Dmytro Filipenko,2,27,7
+Pol Ortiz,Sergej Herbert,1,14,7
+Pablo Felipe Leonhart,Alexey Ivanov,16,228,7
+Murali Mariappan,Dmytro Fokin,14,182,7
+Miša Vučićević,Sergej Herbert,1,13,7
+Manu Ustenko,Sanja Mitrovic,42,585,7
+Manu Ustenko,InfraOps Bot - Renovate,3,39,7
+Manu Ustenko,Jack Mayer,3,38,7
+Juan Bigorra,Yashwanth Harikrishnan,35,443,7
+Jack Mayer,Manu Ustenko,3,38,7
+InfraOps Bot - Renovate,Manu Ustenko,3,39,7
+Dmytro Fokin,Murali Mariappan,14,182,7
+Dmytro Filipenko,Samuel Vasco,2,27,7
+Damilola Adeyemi,sennder,1,13,7
+Alexey Ivanov,Pablo Felipe Leonhart,16,228,7
+dmitry,Samuel Vasco,1,15,6
+Sergei Zaliubovskii,Juan Bigorra,19,284,6
+Sergei Zaliubovskii,Joel Pinto Ribeiro,16,263,6
+Samuel Vasco,Artem Kovshov,1,15,6
+Samuel Vasco,Alena Volchanskaya,1,15,6
+Samuel Vasco,Juan Bigorra,3,45,6
+Samuel Vasco,dmitry,1,15,6
+Pablo Felipe Leonhart,Damilola Adeyemi,5,72,6
+Murali Mariappan,Dmytro Filipenko,11,162,6
+Mikhail Kachala,Juan Bigorra,2,33,6
+Manu Ustenko,Joel Pinto Ribeiro,3,47,6
+Juan Bigorra,Alena Volchanskaya,2,33,6
+Juan Bigorra,Jack Mayer,2,33,6
+Juan Bigorra,Sergei Zaliubovskii,19,284,6
+Juan Bigorra,Samuel Vasco,3,45,6
+Juan Bigorra,Juan,2,32,6
+Juan Bigorra,Mikhail Kachala,2,33,6
+Juan,Juan Bigorra,2,32,6
+Joel Pinto Ribeiro,Sergei Zaliubovskii,16,263,6
+Joel Pinto Ribeiro,Manu Ustenko,3,47,6
+Jack Mayer,Juan Bigorra,2,33,6
+Dmytro Filipenko,Murali Mariappan,11,162,6
+Damilola Adeyemi,Pablo Felipe Leonhart,5,72,6
+Artem Kovshov,Samuel Vasco,1,15,6
+Alena Volchanskaya,Samuel Vasco,1,15,6
+Alena Volchanskaya,Juan Bigorra,2,33,6
+sennder,Joel Pinto Ribeiro,1,19,5
+sennder,Pol Ortiz,1,17,5
+dmitry,Dmytro Fokin,2,34,5
+Sergej Herbert,Dmytro Filipenko,1,20,5
+Pol Ortiz,sennder,1,17,5
+Pol Ortiz,Juan Bigorra,2,39,5
+Murali Mariappan,Manu Ustenko,10,186,5
+Mikhail Kachala,Manu Ustenko,2,38,5
+Mikhail Kachala,Dmytro Fokin,2,35,5
+Manu Ustenko,Murali Mariappan,10,186,5
+Manu Ustenko,Mikhail Kachala,2,38,5
+Juan Bigorra,Pol Ortiz,2,39,5
+Joel Pinto Ribeiro,sennder,1,19,5
+InfraOps Bot - Renovate,Dmytro Fokin,2,35,5
+Dmytro Fokin,Mikhail Kachala,2,35,5
+Dmytro Fokin,dmitry,2,34,5
+Dmytro Fokin,InfraOps Bot - Renovate,2,35,5
+Dmytro Filipenko,Sergej Herbert,1,20,5
+Dmytro Filipenko,Damilola Adeyemi,1,17,5
+Damilola Adeyemi,Dmytro Filipenko,1,17,5
+sennder,Dmytro Filipenko,1,22,4
+Yashwanth Harikrishnan,Joel Pinto Ribeiro,18,422,4
+Sanja Mitrovic,Juan Bigorra,28,579,4
+Pablo Felipe Leonhart,Jack Mayer,3,69,4
+Manu Ustenko,Damilola Adeyemi,2,41,4
+Juan Bigorra,Sanja Mitrovic,28,579,4
+Joel Pinto Ribeiro,Yashwanth Harikrishnan,18,422,4
+Jack Mayer,Pablo Felipe Leonhart,3,69,4
+Dmytro Filipenko,sennder,1,22,4
+Damilola Adeyemi,Manu Ustenko,2,41,4
+sennder,Sergei Zaliubovskii,10,262,3
+sennder,Yashwanth Harikrishnan,16,421,3
+Yashwanth Harikrishnan,Pol Ortiz,14,420,3
+Yashwanth Harikrishnan,sennder,16,421,3
+Yashwanth Harikrishnan,Samuel Vasco,16,426,3
+Sergej Herbert,Murali Mariappan,6,156,3
+Sergej Herbert,Sergei Zaliubovskii,9,259,3
+Sergei Zaliubovskii,Sergej Herbert,9,259,3
+Sergei Zaliubovskii,sennder,10,262,3
+Sanja Mitrovic,Dmytro Filipenko,19,561,3
+Sanja Mitrovic,Joel Pinto Ribeiro,20,558,3
+Sanja Mitrovic,Samuel Vasco,20,562,3
+Samuel Vasco,Yashwanth Harikrishnan,16,426,3
+Samuel Vasco,Sanja Mitrovic,20,562,3
+Pol Ortiz,Yashwanth Harikrishnan,14,420,3
+Murali Mariappan,Juan Bigorra,7,180,3
+Murali Mariappan,Sergej Herbert,6,156,3
+Juan Bigorra,Murali Mariappan,7,180,3
+Juan Bigorra,Atharva Pathak,1,32,3
+Joel Pinto Ribeiro,Sanja Mitrovic,20,558,3
+Dmytro Filipenko,Sanja Mitrovic,19,561,3
+Atharva Pathak,Juan Bigorra,1,32,3
+sennder,Sanja Mitrovic,12,557,2
+sennder,Murali Mariappan,4,158,2
+dmitry,Manu Ustenko,1,38,2
+dmitry,Pablo Felipe Leonhart,2,69,2
+Yashwanth Harikrishnan,Dmytro Filipenko,12,425,2
+Yashwanth Harikrishnan,Miša Vučićević,12,419,2
+Yashwanth Harikrishnan,Sergej Herbert,11,419,2
+Sergej Herbert,Yashwanth Harikrishnan,11,419,2
+Sergei Zaliubovskii,Damilola Adeyemi,6,257,2
+Sanja Mitrovic,sennder,12,557,2
+Pol Ortiz,Pablo Felipe Leonhart,2,75,2
+Pol Ortiz,Dmytro Fokin,1,41,2
+Pablo Felipe Leonhart,Dmytro Filipenko,2,81,2
+Pablo Felipe Leonhart,Miša Vučićević,2,74,2
+Pablo Felipe Leonhart,Pol Ortiz,2,75,2
+Pablo Felipe Leonhart,dmitry,2,69,2
+Pablo Felipe Leonhart,Mikhail Kachala,2,69,2
+Pablo Felipe Leonhart,InfraOps Bot - Renovate,2,70,2
+Murali Mariappan,sennder,4,158,2
+Murali Mariappan,Miša Vučićević,4,156,2
+Miša Vučićević,Murali Mariappan,4,156,2
+Miša Vučićević,Pablo Felipe Leonhart,2,74,2
+Miša Vučićević,Manu Ustenko,1,43,2
+Miša Vučićević,Yashwanth Harikrishnan,12,419,2
+Miša Vučićević,Juan Bigorra,1,38,2
+Mikhail Kachala,Pablo Felipe Leonhart,2,69,2
+Manu Ustenko,Dmytro Filipenko,1,50,2
+Manu Ustenko,Alena Volchanskaya,1,38,2
+Manu Ustenko,Artem Kovshov,1,38,2
+Manu Ustenko,dmitry,1,38,2
+Manu Ustenko,Miša Vučićević,1,43,2
+Juan Bigorra,Miša Vučićević,1,38,2
+Juan Bigorra,Dmytro Filipenko,1,44,2
+InfraOps Bot - Renovate,Pablo Felipe Leonhart,2,70,2
+Dmytro Fokin,Pol Ortiz,1,41,2
+Dmytro Fokin,Artem Kovshov,1,35,2
+Dmytro Fokin,Dmytro Filipenko,1,46,2
+Dmytro Fokin,Alena Volchanskaya,1,35,2
+Dmytro Fokin,Alexey Ivanov,4,193,2
+Dmytro Filipenko,Pablo Felipe Leonhart,2,81,2
+Dmytro Filipenko,Yashwanth Harikrishnan,12,425,2
+Dmytro Filipenko,Juan Bigorra,1,44,2
+Dmytro Filipenko,Manu Ustenko,1,50,2
+Dmytro Filipenko,Dmytro Fokin,1,46,2
+Damilola Adeyemi,Sergei Zaliubovskii,6,257,2
+Artem Kovshov,Dmytro Fokin,1,35,2
+Artem Kovshov,Manu Ustenko,1,38,2
+Alexey Ivanov,Dmytro Fokin,4,193,2
+Alena Volchanskaya,Manu Ustenko,1,38,2
+Alena Volchanskaya,Dmytro Fokin,1,35,2
+Yashwanth Harikrishnan,Damilola Adeyemi,6,416,1
+Sergej Herbert,Sanja Mitrovic,10,555,1
+Sergei Zaliubovskii,Dmytro Filipenko,3,266,1
+Sergei Zaliubovskii,Miša Vučićević,5,259,1
+Sanja Mitrovic,Sergej Herbert,10,555,1
+Sanja Mitrovic,Damilola Adeyemi,8,552,1
+Sanja Mitrovic,Miša Vučićević,11,555,1
+Sanja Mitrovic,Pol Ortiz,10,556,1
+Samuel Vasco,Murali Mariappan,2,163,1
+Pol Ortiz,Murali Mariappan,2,157,1
+Pol Ortiz,Sanja Mitrovic,10,556,1
+Pol Ortiz,Alexey Ivanov,2,168,1
+Pablo Felipe Leonhart,Artem Kovshov,1,69,1
+Pablo Felipe Leonhart,Alena Volchanskaya,1,69,1
+Murali Mariappan,Jack Mayer,2,151,1
+Murali Mariappan,Samuel Vasco,2,163,1
+Murali Mariappan,Joel Pinto Ribeiro,2,159,1
+Murali Mariappan,Damilola Adeyemi,2,153,1
+Murali Mariappan,Alena Volchanskaya,2,151,1
+Murali Mariappan,Pol Ortiz,2,157,1
+Murali Mariappan,Katya Senenkova,2,150,1
+Murali Mariappan,InfraOps Bot - Renovate,2,151,1
+Murali Mariappan,Mikhail Kachala,2,151,1
+Miša Vučićević,Sanja Mitrovic,11,555,1
+Miša Vučićević,Alexey Ivanov,2,167,1
+Miša Vučićević,Sergei Zaliubovskii,5,259,1
+Mikhail Kachala,Murali Mariappan,2,151,1
+Katya Senenkova,Alexey Ivanov,2,161,1
+Katya Senenkova,Murali Mariappan,2,150,1
+Joel Pinto Ribeiro,Murali Mariappan,2,159,1
+Jack Mayer,Murali Mariappan,2,151,1
+InfraOps Bot - Renovate,Murali Mariappan,2,151,1
+Dmytro Filipenko,Sergei Zaliubovskii,3,266,1
+Damilola Adeyemi,Yashwanth Harikrishnan,6,416,1
+Damilola Adeyemi,Sanja Mitrovic,8,552,1
+Damilola Adeyemi,Murali Mariappan,2,153,1
+Artem Kovshov,Pablo Felipe Leonhart,1,69,1
+Alexey Ivanov,Pol Ortiz,2,168,1
+Alexey Ivanov,Katya Senenkova,2,161,1
+Alexey Ivanov,Miša Vučićević,2,167,1
+Alena Volchanskaya,Murali Mariappan,2,151,1
+Alena Volchanskaya,Pablo Felipe Leonhart,1,69,1
+dmitry,Sanja Mitrovic,2,549,0
+dmitry,Yashwanth Harikrishnan,2,413,0
+dmitry,Murali Mariappan,1,150,0
+dmitry,Sergei Zaliubovskii,2,254,0
+Yashwanth Harikrishnan,Artem Kovshov,2,414,0
+Yashwanth Harikrishnan,Alena Volchanskaya,2,414,0
+Yashwanth Harikrishnan,Katya Senenkova,2,413,0
+Yashwanth Harikrishnan,InfraOps Bot - Renovate,3,414,0
+Yashwanth Harikrishnan,Atharva Pathak,2,413,0
+Yashwanth Harikrishnan,Mikhail Kachala,2,414,0
+Yashwanth Harikrishnan,Juan,2,413,0
+Yashwanth Harikrishnan,dmitry,2,413,0
+Yashwanth Harikrishnan,Jack Mayer,3,414,0
+Sergei Zaliubovskii,InfraOps Bot - Renovate,2,255,0
+Sergei Zaliubovskii,Sennder Machine User,1,253,0
+Sergei Zaliubovskii,dmitry,2,254,0
+Sergei Zaliubovskii,Jack Mayer,2,254,0
+Sergei Zaliubovskii,Developer Portal Bot,1,253,0
+Sergei Zaliubovskii,Pol Ortiz,2,260,0
+Sergei Zaliubovskii,Atharva Pathak,1,254,0
+Sergei Zaliubovskii,Juan,1,254,0
+Sergei Zaliubovskii,Alena Volchanskaya,2,254,0
+Sergei Zaliubovskii,Matcha,1,253,0
+Sergei Zaliubovskii,Artem Kovshov,1,254,0
+Sergei Zaliubovskii,Mikhail Kachala,2,254,0
+Sennder Machine User,Sergei Zaliubovskii,1,253,0
+Sennder Machine User,Murali Mariappan,1,150,0
+Sanja Mitrovic,Atharva Pathak,1,549,0
+Sanja Mitrovic,InfraOps Bot - Renovate,2,550,0
+Sanja Mitrovic,Artem Kovshov,2,550,0
+Sanja Mitrovic,Juan,1,549,0
+Sanja Mitrovic,Jack Mayer,2,550,0
+Sanja Mitrovic,Katya Senenkova,2,549,0
+Sanja Mitrovic,Alena Volchanskaya,2,550,0
+Sanja Mitrovic,Mikhail Kachala,3,550,0
+Sanja Mitrovic,dmitry,2,549,0
+Pol Ortiz,Sergei Zaliubovskii,2,260,0
+Murali Mariappan,Developer Portal Bot,1,150,0
+Murali Mariappan,Atharva Pathak,1,150,0
+Murali Mariappan,Juan,1,150,0
+Murali Mariappan,Sennder Machine User,1,150,0
+Murali Mariappan,Artem Kovshov,1,151,0
+Murali Mariappan,dmitry,1,150,0
+Murali Mariappan,Matcha,1,150,0
+Mikhail Kachala,Yashwanth Harikrishnan,2,414,0
+Mikhail Kachala,Sanja Mitrovic,3,550,0
+Mikhail Kachala,Sergei Zaliubovskii,2,254,0
+Matcha,Sergei Zaliubovskii,1,253,0
+Matcha,Murali Mariappan,1,150,0
+Manu Ustenko,Alexey Ivanov,1,197,0
+Katya Senenkova,Yashwanth Harikrishnan,2,413,0
+Katya Senenkova,Sanja Mitrovic,2,549,0
+Juan,Murali Mariappan,1,150,0
+Juan,Sergei Zaliubovskii,1,254,0
+Juan,Sanja Mitrovic,1,549,0
+Juan,Yashwanth Harikrishnan,2,413,0
+Jack Mayer,Sergei Zaliubovskii,2,254,0
+Jack Mayer,Sanja Mitrovic,2,550,0
+Jack Mayer,Yashwanth Harikrishnan,3,414,0
+InfraOps Bot - Renovate,Sanja Mitrovic,2,550,0
+InfraOps Bot - Renovate,Sergei Zaliubovskii,2,255,0
+InfraOps Bot - Renovate,Yashwanth Harikrishnan,3,414,0
+Developer Portal Bot,Murali Mariappan,1,150,0
+Developer Portal Bot,Sergei Zaliubovskii,1,253,0
+Atharva Pathak,Murali Mariappan,1,150,0
+Atharva Pathak,Yashwanth Harikrishnan,2,413,0
+Atharva Pathak,Sanja Mitrovic,1,549,0
+Atharva Pathak,Sergei Zaliubovskii,1,254,0
+Artem Kovshov,Sanja Mitrovic,2,550,0
+Artem Kovshov,Murali Mariappan,1,151,0
+Artem Kovshov,Sergei Zaliubovskii,1,254,0
+Artem Kovshov,Alexey Ivanov,1,162,0
+Artem Kovshov,Yashwanth Harikrishnan,2,414,0
+Alexey Ivanov,Artem Kovshov,1,162,0
+Alexey Ivanov,Manu Ustenko,1,197,0
+Alena Volchanskaya,Yashwanth Harikrishnan,2,414,0
+Alena Volchanskaya,Sergei Zaliubovskii,2,254,0
+Alena Volchanskaya,Sanja Mitrovic,2,550,0
