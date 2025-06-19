@@ -329,9 +329,11 @@ end
 
 ## Phase 2: Analysis Type Implementation
 
-### 2.1 Core Analysis Types (Priority 1)
+> **⚠️ Architecture Decision**: After implementing the first analysis types, we identified that the inheritance-based approach violates SOLID principles. See [CodeMaatClient Refactor Plan](./code-maat-ruby-wrapper-refactor-plan.md) for the migration to a composition-based architecture.
 
-**🎯 LLM Task**: Implement 5 core analysis types using TDD
+### 2.1 Core Analysis Types (Priority 1) - LEGACY APPROACH
+
+**🎯 LLM Task**: Implement 5 core analysis types using TDD (will be refactored to composition)
 
 **Target**: 5 most commonly used analysis types
 
@@ -340,10 +342,12 @@ end
 **Order of Implementation**:
 
 1. **Summary** - Basic overview and validation ✅
-2. **Revisions** - File change frequency ⏳
+2. **Revisions** - File change frequency ✅
 3. **Authors** - Contributor distribution ⏳
 4. **Entity-Churn** - Code volatility ⏳
 5. **Coupling** - Change correlation ⏳
+
+> **Note**: These will be implemented using the current inheritance approach, then refactored to composition in Phase 2.2.
 
 **📁 File Pattern for Each Analysis**:
 
@@ -425,17 +429,52 @@ class CodeMaatClient
 end
 ```
 
-### 2.2 Advanced Analysis Types (Priority 2)
+### 2.2 Architecture Refactoring (CRITICAL)
 
-**Target**: 8 intermediate analysis types
+**🎯 LLM Task**: Refactor from inheritance to composition-based architecture
 
-**Implementation Order**: 6. **Main-Dev** - Primary contributors 7. **Entity-Ownership** - Detailed ownership 8. **Author-Churn** - Individual productivity 9. **Communication** - Developer interaction 10. **Fragmentation** - Collaboration complexity 11. **Age** - File maturity 12. **Entity-Effort** - Development investment 13. **Abs-Churn** - Temporal change patterns
+**Deliverable**: SOLID-compliant design following the [Refactor Plan](./code-maat-ruby-wrapper-refactor-plan.md)
 
-### 2.3 Specialized Analysis Types (Priority 3)
+**Implementation Order**:
+1. Create composition components (validators, executors, builders)
+2. Migrate existing Summary and Revisions to composition
+3. Update client interface with backward compatibility
+4. Remove inheritance-based Base class
 
-**Target**: 6 specialized analysis types
+**Files to Create**:
+- `lib/code_maat_client/validators/`
+- `lib/code_maat_client/builders/`
+- `lib/code_maat_client/configuration/`
+- `lib/code_maat_client/executors/`
+- `lib/code_maat_client/analyses/` (new composition-based analysis types)
 
-**Implementation Order**: 14. **Main-Dev-By-Revs** - Frequency-based ownership 15. **Refactoring-Main-Dev** - Cleanup specialists 16. **Messages** - Commit message analysis 17. **Identity** - Author consolidation 18. **SOC** (Sum of Coupling) - Architectural centrality 19. **Coupling** - Advanced coupling analysis
+### 2.3 Advanced Analysis Types (Priority 2) - COMPOSITION APPROACH
+
+**Target**: 8 intermediate analysis types using new composition architecture
+
+**Implementation Order**: 
+3. **Authors** - Contributor distribution 
+4. **Entity-Churn** - Code volatility 
+5. **Coupling** - Change correlation
+6. **Main-Dev** - Primary contributors 
+7. **Entity-Ownership** - Detailed ownership 
+8. **Author-Churn** - Individual productivity 
+9. **Communication** - Developer interaction 
+10. **Fragmentation** - Collaboration complexity
+
+### 2.4 Specialized Analysis Types (Priority 3) - COMPOSITION APPROACH
+
+**Target**: Remaining specialized analysis types
+
+**Implementation Order**: 
+11. **Age** - File maturity 
+12. **Entity-Effort** - Development investment 
+13. **Abs-Churn** - Temporal change patterns
+14. **Main-Dev-By-Revs** - Frequency-based ownership 
+15. **Refactoring-Main-Dev** - Cleanup specialists 
+16. **Messages** - Commit message analysis 
+17. **Identity** - Author consolidation 
+18. **SOC** (Sum of Coupling) - Architectural centrality
 
 ## Phase 3: Code-Maat Wrapper Implementation
 
@@ -949,8 +988,11 @@ end
 
 **🤖 Estimated Time for LLM Assistant**:
 
-**Phase 1**: Gem Foundation (2-3 implementation sessions)
-**Phase 2**: Analysis Types (8-12 implementation sessions)  
+**Phase 1**: Gem Foundation (2-3 implementation sessions) ✅
+**Phase 2.1**: Legacy Analysis Types (2-3 implementation sessions) ✅
+**Phase 2.2**: Architecture Refactoring (3-4 implementation sessions) ⏳
+**Phase 2.3**: Advanced Analysis Types (4-6 implementation sessions)
+**Phase 2.4**: Specialized Analysis Types (4-6 implementation sessions)
 **Phase 3**: Wrapper Implementation (2-3 implementation sessions)
 **Phase 4**: Gem Packaging (1-2 implementation sessions)
 **Phase 5**: Code-Forensics Integration (1-2 implementation sessions)
@@ -958,7 +1000,9 @@ end
 **Phase 7**: Documentation (1-2 implementation sessions)
 **Phase 8**: Publication (1 implementation session)
 
-**Total Estimated Time**: 18-28 LLM implementation sessions
+**Total Estimated Time**: 23-35 LLM implementation sessions
+
+> **Current Status**: Completed Phase 1 and Phase 2.1. Ready to proceed with Phase 2.2 (Architecture Refactoring) to address SOLID principle violations before implementing additional analysis types.
 
 **🎯 Per Session Goals**:
 
