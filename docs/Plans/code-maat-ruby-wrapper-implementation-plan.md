@@ -119,56 +119,58 @@ results = client.run_analysis('entity-churn', 'git.log')
 **Exact Directory Structure to Create**:
 
 ```
-code_maat_client/                   # New gem root directory
-├── lib/
-│   ├── code_maat_client.rb        # Main entry point
-│   └── code_maat_client/
-│       ├── version.rb
-│       ├── client.rb              # Main API class
-│       ├── analysis_types/
-│       │   ├── base.rb
-│       │   ├── summary.rb
-│       │   ├── revisions.rb
-│       │   ├── authors.rb
-│       │   ├── entity_churn.rb
-│       │   ├── coupling.rb
-│       │   └── [... 14 more analysis types]
-│       ├── infrastructure/
-│       │   ├── jar_executor.rb
-│       │   ├── csv_parser.rb
-│       │   └── command_builder.rb
-│       ├── value_objects/
-│       │   ├── analysis_result.rb
-│       │   ├── analysis_options.rb
-│       │   └── execution_result.rb
-│       └── errors/
-│           ├── base_error.rb
-│           ├── java_not_found_error.rb
-│           ├── jar_not_found_error.rb
-│           └── analysis_error.rb
-├── spec/
-│   ├── spec_helper.rb
-│   ├── code_maat_client/
-│   │   ├── client_spec.rb
-│   │   ├── analysis_types/
-│   │   ├── infrastructure/
-│   │   ├── value_objects/
-│   │   └── errors/
-│   ├── fixtures/
-│   │   ├── sample_git.log
-│   │   └── expected_outputs/
-│   └── integration/
-│       └── full_analysis_spec.rb
-├── vendor/
-│   └── code-maat-1.0.4-standalone.jar
-├── code_maat_client.gemspec
-├── Gemfile
-├── Rakefile
-├── README.md
-├── CHANGELOG.md
-└── .github/
-    └── workflows/
-        └── ci.yml
+/Users/jbigorra/Projects/code-forensics/
+├── code-forensics-ui/              # Existing UI project
+└── code_maat_client/               # New gem root directory (sibling to code-forensics-ui)
+    ├── lib/
+    │   ├── code_maat_client.rb        # Main entry point
+    │   └── code_maat_client/
+    │       ├── version.rb
+    │       ├── client.rb              # Main API class
+    │       ├── analysis_types/
+    │       │   ├── base.rb
+    │       │   ├── summary.rb
+    │       │   ├── revisions.rb
+    │       │   ├── authors.rb
+    │       │   ├── entity_churn.rb
+    │       │   ├── coupling.rb
+    │       │   └── [... 14 more analysis types]
+    │       ├── infrastructure/
+    │       │   ├── jar_executor.rb
+    │       │   ├── csv_parser.rb
+    │       │   └── command_builder.rb
+    │       ├── value_objects/
+    │       │   ├── analysis_result.rb
+    │       │   ├── analysis_options.rb
+    │       │   └── execution_result.rb
+    │       └── errors/
+    │           ├── base_error.rb
+    │           ├── java_not_found_error.rb
+    │           ├── jar_not_found_error.rb
+    │           └── analysis_error.rb
+    ├── spec/
+    │   ├── spec_helper.rb
+    │   ├── code_maat_client/
+    │   │   ├── client_spec.rb
+    │   │   ├── analysis_types/
+    │   │   ├── infrastructure/
+    │   │   ├── value_objects/
+    │   │   └── errors/
+    │   ├── fixtures/
+    │   │   ├── sample_git.log
+    │   │   └── expected_outputs/
+    │   └── integration/
+    │       └── full_analysis_spec.rb
+    ├── vendor/
+    │   └── code-maat-1.0.4-standalone.jar
+    ├── code_maat_client.gemspec
+    ├── Gemfile
+    ├── Rakefile
+    ├── README.md
+    ├── CHANGELOG.md
+    └── .github/
+        └── workflows/
+            └── ci.yml
 ```
 
 **🔍 Validation Steps**:
@@ -181,11 +183,11 @@ code_maat_client/                   # New gem root directory
 
 **🎯 Specific Files to Create**:
 
-- `code_maat_client/Gemfile` - Development dependencies (rspec, etc.)
-- `code_maat_client/code_maat_client.gemspec` - Gem specification with JAR included
-- `code_maat_client/lib/code_maat_client.rb` - Main entry point and public API
-- `code_maat_client/spec/spec_helper.rb` - RSpec configuration
-- `code_maat_client/README.md` - Installation and usage instructions
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/Gemfile` - Development dependencies (rspec, etc.)
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/code_maat_client.gemspec` - Gem specification with JAR included
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client.rb` - Main entry point and public API
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/spec_helper.rb` - RSpec configuration
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/README.md` - Installation and usage instructions
 
 **Acceptance Criteria**:
 
@@ -204,12 +206,12 @@ code_maat_client/                   # New gem root directory
 
 **📁 Files to Create** (in this order):
 
-1. `code_maat_client/spec/code_maat_client/value_objects/analysis_result_spec.rb`
-2. `code_maat_client/spec/code_maat_client/value_objects/analysis_options_spec.rb`
-3. `code_maat_client/spec/code_maat_client/value_objects/execution_result_spec.rb`
-4. `code_maat_client/lib/code_maat_client/value_objects/analysis_result.rb`
-5. `code_maat_client/lib/code_maat_client/value_objects/analysis_options.rb`
-6. `code_maat_client/lib/code_maat_client/value_objects/execution_result.rb`
+1. `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/value_objects/analysis_result_spec.rb`
+2. `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/value_objects/analysis_options_spec.rb`
+3. `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/value_objects/execution_result_spec.rb`
+4. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/value_objects/analysis_result.rb`
+5. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/value_objects/analysis_options.rb`
+6. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/value_objects/execution_result.rb`
 
 **Test Cases to Implement First**:
 
@@ -263,8 +265,8 @@ end
 
 **📁 Files to Create**:
 
-1. `code_maat_client/spec/code_maat_client/infrastructure/jar_executor_spec.rb` (test first)
-2. `code_maat_client/lib/code_maat_client/infrastructure/jar_executor.rb`
+1. `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/infrastructure/jar_executor_spec.rb` (test first)
+2. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/infrastructure/jar_executor.rb`
 
 **🔍 Validation Commands**:
 
@@ -345,9 +347,9 @@ end
 
 **📁 File Pattern for Each Analysis**:
 
-- `code_maat_client/spec/code_maat_client/analysis_types/{name}_spec.rb` (test first)
-- `code_maat_client/lib/code_maat_client/analysis_types/{name}.rb`
-- Integration test in `code_maat_client/spec/integration/{name}_integration_spec.rb`
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/analysis_types/{name}_spec.rb` (test first)
+- `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/analysis_types/{name}.rb`
+- Integration test in `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/integration/{name}_integration_spec.rb`
 
 **Test-First Implementation Pattern**:
 
@@ -445,8 +447,8 @@ end
 
 **📁 Files to Create**:
 
-1. `code_maat_client/spec/code_maat_client/client_spec.rb` (test first)
-2. `code_maat_client/lib/code_maat_client/client.rb`
+1. `/Users/jbigorra/Projects/code-forensics/code_maat_client/spec/code_maat_client/client_spec.rb` (test first)
+2. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/client.rb`
 
 **🔍 Validation Steps**:
 
@@ -585,15 +587,15 @@ end
 
 **📁 Files to Create**:
 
-1. `code-maat/code_maat.gemspec` - Complete gem specification
-2. `code-maat/lib/code_maat/version.rb` - Version management
-3. `code-maat/README.md` - Installation and usage documentation
-4. `code-maat/CHANGELOG.md` - Version history
+1. `/Users/jbigorra/Projects/code-forensics/code_maat_client/code_maat_client.gemspec` - Complete gem specification
+2. `/Users/jbigorra/Projects/code-forensics/code_maat_client/lib/code_maat_client/version.rb` - Version management
+3. `/Users/jbigorra/Projects/code-forensics/code_maat_client/README.md` - Installation and usage documentation
+4. `/Users/jbigorra/Projects/code-forensics/code_maat_client/CHANGELOG.md` - Version history
 
 **🔍 Validation Steps**:
 
-- `gem build code_maat.gemspec` succeeds
-- `gem install code_maat-*.gem` works locally
+- `gem build code_maat_client.gemspec` succeeds
+- `gem install code_maat_client-*.gem` works locally
 - JAR file is included in built gem
 - All dependencies are properly declared
 - Documentation is clear and complete
@@ -601,18 +603,18 @@ end
 **Gemspec Template**:
 
 ```ruby
-# code_maat.gemspec
-require_relative 'lib/code_maat/version'
+# code_maat_client.gemspec
+require_relative 'lib/code_maat_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'code_maat'
-  spec.version       = CodeMaat::VERSION
+  spec.name          = 'code_maat_client'
+  spec.version       = CodeMaatClient::VERSION
   spec.authors       = ['Your Name']
   spec.email         = ['your.email@example.com']
 
   spec.summary       = 'Ruby wrapper for code-maat analysis tool'
   spec.description   = 'Provides Ruby interface to code-maat JAR for repository analysis'
-  spec.homepage      = 'https://github.com/yourusername/code-maat-ruby'
+  spec.homepage      = 'https://github.com/yourusername/code-maat-client-ruby'
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*', 'vendor/**/*', 'README.md', 'CHANGELOG.md']
@@ -644,17 +646,17 @@ end
 
 ```ruby
 # Basic usage
-require 'code_maat'
+require 'code_maat_client'
 
-wrapper = CodeMaat::Wrapper.new
-result = wrapper.analysis_for('summary').run('git.log')
+client = CodeMaatClient.new
+result = client.analysis_for('summary').run('git.log')
 puts result.data
 
 # With options
-result = wrapper.analysis_for('revisions').run('git.log', rows: 20)
+result = client.analysis_for('revisions').run('git.log', rows: 20)
 
 # Custom JAR path
-wrapper = CodeMaat::Wrapper.new('/custom/path/to/code-maat.jar')
+client = CodeMaatClient.new('/custom/path/to/code-maat.jar')
 ```
 
 ## Phase 5: Integration with Code-Forensics
@@ -670,16 +672,16 @@ wrapper = CodeMaat::Wrapper.new('/custom/path/to/code-maat.jar')
 1. **Add to code-forensics Gemfile**:
 
 ```ruby
-# code-forensics/Gemfile
+# code-forensics-ui/cli/Gemfile
 gem 'code_maat_client', '~> 1.0'
 # or for local development:
-gem 'code_maat_client', path: '../code_maat_client'
+gem 'code_maat_client', path: '../../code_maat_client'
 ```
 
 2. **Update code-forensics architecture**:
 
 ```ruby
-# code-forensics/src/code-forensics/infrastructure/analysers/code_maat_client_adapter.rb
+# code-forensics-ui/cli/src/code-forensics/infrastructure/analysers/code_maat_client_adapter.rb
 require 'code_maat_client'
 
 class CodeMaatClientAdapter
@@ -696,7 +698,7 @@ end
 3. **Enhance existing use cases**:
 
 ```ruby
-# code-forensics/src/code-forensics/application/use-cases/run_summary_analysis.rb
+# code-forensics-ui/cli/src/code-forensics/application/use-cases/run_summary_analysis.rb
 class RunSummaryAnalysis
   def initialize(code_maat_adapter = CodeMaatClientAdapter.new)
     @adapter = code_maat_adapter
