@@ -4,6 +4,24 @@
 
 This plan outlines the implementation of a comprehensive Ruby wrapper library for the `code-maat-1.0.4-standalone.jar` tool. The wrapper will provide a native Ruby interface to all 19 analysis types supported by code-maat, following test-driven development (TDD) principles and clean architecture patterns.
 
+## 🤖 LLM Assistant Instructions
+
+This plan is designed for step-by-step implementation by an LLM assistant. Each phase includes:
+
+- **Clear deliverables** with acceptance criteria
+- **Exact file paths** where code should be created
+- **Complete test cases** to implement first (TDD)
+- **Implementation templates** with specific Ruby code
+- **Validation steps** to verify correctness
+
+### How to Use This Plan:
+
+1. **Work sequentially** through phases 1-8
+2. **Always implement tests first** before any production code
+3. **Use the provided templates** as starting points
+4. **Validate each step** using the acceptance criteria
+5. **Ask for clarification** if any requirement is ambiguous
+
 ## Recommendation: Wrapper vs. Rewrite
 
 **Decision: Implement Ruby Wrapper**
@@ -46,7 +64,9 @@ This plan outlines the implementation of a comprehensive Ruby wrapper library fo
 
 **Deliverable**: Well-organized Ruby gem structure
 
-**Directory Structure**:
+**🎯 LLM Task**: Create the following directory structure and files:
+
+**Exact Directory Structure to Create**:
 
 ```
 cli/src/code-forensics/
@@ -84,16 +104,42 @@ cli/src/code-forensics/
         └── csv_formatter.rb
 ```
 
+**🔍 Validation Steps**:
+
+1. Run `bundle install` successfully
+2. All directories exist as specified
+3. Gemspec file is valid (`gem build` passes)
+4. RSpec can be executed (`bundle exec rspec --init`)
+
+**🎯 Specific Files to Create**:
+
+- `cli/Gemfile` - Add rspec, thor, csv gems
+- `cli/code_forensics.gemspec` - Gem specification
+- `cli/lib/code_forensics.rb` - Main entry point
+- `cli/spec/spec_helper.rb` - RSpec configuration
+
 **Acceptance Criteria**:
 
 - [ ] Proper Ruby gem structure with gemspec
 - [ ] Clean architecture folder organization
 - [ ] All dependencies properly declared
 - [ ] README with basic usage instructions
+- [ ] All validation steps pass
 
 ### 1.2 Core Value Objects and Domain Models
 
 **Deliverable**: Domain models representing analysis concepts
+
+**🎯 LLM Task**: Implement value objects using strict TDD
+
+**📁 Files to Create** (in this order):
+
+1. `cli/spec/domain/value_objects/analysis_result_spec.rb`
+2. `cli/spec/domain/value_objects/date_range_spec.rb`
+3. `cli/spec/domain/value_objects/analysis_options_spec.rb`
+4. `cli/src/code-forensics/domain/value_objects/analysis_result.rb`
+5. `cli/src/code-forensics/domain/value_objects/date_range.rb`
+6. `cli/src/code-forensics/domain/value_objects/analysis_options.rb`
 
 **Test Cases to Implement First**:
 
@@ -123,16 +169,38 @@ describe AnalysisOptions do
 end
 ```
 
-**Implementation Order**:
+**🔄 TDD Implementation Steps**:
+
+1. **RED**: Write failing test for one behavior
+2. **GREEN**: Write minimal code to pass the test
+3. **REFACTOR**: Improve code while keeping tests green
+4. **REPEAT**: Continue for each test case
+
+**🎯 Implementation Order**:
 
 1. Write failing tests for each value object
 2. Implement minimal classes to pass tests
 3. Refactor and add edge case handling
 4. Add validation and error handling
 
+**🔍 Validation**: All tests pass (`bundle exec rspec spec/domain/value_objects/`)
+
 ### 1.3 JAR Executor Infrastructure
 
 **Deliverable**: Robust JAR execution with error handling
+
+**🎯 LLM Task**: Create JAR execution layer with comprehensive error handling
+
+**📁 Files to Create**:
+
+1. `cli/spec/infrastructure/analysers/jar_executor_spec.rb` (test first)
+2. `cli/src/code-forensics/infrastructure/analysers/jar_executor.rb`
+
+**🔍 Validation Commands**:
+
+- `bundle exec rspec spec/infrastructure/analysers/jar_executor_spec.rb`
+- `java -version` (must work on system)
+- JAR file exists at `cli/src/code-forensics/infrastructure/analysers/bin/code-maat-1.0.4-standalone.jar`
 
 **Test Cases**:
 
@@ -190,15 +258,25 @@ end
 
 ### 2.1 Core Analysis Types (Priority 1)
 
+**🎯 LLM Task**: Implement 5 core analysis types using TDD
+
 **Target**: 5 most commonly used analysis types
+
+**📋 Implementation Checklist** (complete each fully before moving to next):
 
 **Order of Implementation**:
 
-1. **Summary** - Basic overview and validation
-2. **Revisions** - File change frequency
-3. **Authors** - Contributor distribution
-4. **Entity-Churn** - Code volatility
-5. **Coupling** - Change correlation
+1. **Summary** - Basic overview and validation ✅
+2. **Revisions** - File change frequency ⏳
+3. **Authors** - Contributor distribution ⏳
+4. **Entity-Churn** - Code volatility ⏳
+5. **Coupling** - Change correlation ⏳
+
+**📁 File Pattern for Each Analysis**:
+
+- `cli/spec/domain/analysis_types/{name}_analysis_spec.rb` (test first)
+- `cli/src/code-forensics/domain/analysis_types/{name}_analysis.rb`
+- Integration test in `cli/spec/integration/{name}_integration_spec.rb`
 
 **Test-First Implementation Pattern**:
 
@@ -287,6 +365,19 @@ end
 ### 3.1 Core Wrapper Class
 
 **Deliverable**: Main interface to code-maat JAR
+
+**🎯 LLM Task**: Create the main CodeMaatWrapper class
+
+**📁 Files to Create**:
+
+1. `cli/spec/infrastructure/analysers/code_maat_wrapper_spec.rb` (test first)
+2. `cli/src/code-forensics/infrastructure/analysers/code_maat_wrapper.rb`
+
+**🔍 Validation Steps**:
+
+- All tests pass: `bundle exec rspec spec/infrastructure/analysers/code_maat_wrapper_spec.rb`
+- Can list all 19 supported analysis types
+- Validates input parameters correctly
 
 **Test Cases**:
 
@@ -646,14 +737,34 @@ end
 - Command-line option precedence
 - Validation of configuration values
 
-## Implementation Guidelines
+## 🤖 LLM Implementation Guidelines
 
 ### Test-Driven Development Process
 
-1. **Red**: Write failing test that describes desired behavior
-2. **Green**: Write minimal code to make test pass
-3. **Refactor**: Improve code quality while keeping tests green
-4. **Repeat**: Continue for each small increment
+**🔴 RED**: Write failing test that describes desired behavior
+**🟢 GREEN**: Write minimal code to make test pass  
+**🔵 REFACTOR**: Improve code quality while keeping tests green
+**🔄 REPEAT**: Continue for each small increment
+
+### 🎯 LLM-Specific Instructions
+
+**For Each Implementation Task**:
+
+1. **Start with the test file** - Always create the `_spec.rb` file first
+2. **Write one test at a time** - Don't write all tests at once
+3. **Run the test to ensure it fails** - Verify the test is actually testing something
+4. **Write minimal implementation** - Just enough to make the test pass
+5. **Run all tests** - Ensure nothing is broken
+6. **Refactor if needed** - Improve code clarity and structure
+7. **Commit the working code** - Each cycle should result in working code
+
+**File Creation Order** (always follow this):
+
+1. Create test file with one failing test
+2. Create implementation file with minimal code
+3. Add more tests one by one
+4. Enhance implementation incrementally
+5. Add integration tests last
 
 ### Code Quality Standards
 
@@ -730,21 +841,45 @@ end
 - [ ] Intuitive CLI interface
 - [ ] Comprehensive help system
 
-## Timeline Estimation
+## 📅 LLM Implementation Timeline
 
-**Phase 1**: Foundation (5-7 days)
-**Phase 2**: Analysis Types (15-20 days)
-**Phase 3**: Wrapper Implementation (5-7 days)
-**Phase 4**: Use Cases (3-5 days)
-**Phase 5**: CLI Integration (3-5 days)
-**Phase 6**: Testing (5-7 days)
-**Phase 7**: Documentation (3-5 days)
-**Phase 8**: Production (2-3 days)
+**🤖 Estimated Time for LLM Assistant**:
 
-**Total Estimated Time**: 41-59 days (8-12 weeks)
+**Phase 1**: Foundation (2-3 implementation sessions)
+**Phase 2**: Analysis Types (8-12 implementation sessions)  
+**Phase 3**: Wrapper Implementation (2-3 implementation sessions)
+**Phase 4**: Use Cases (1-2 implementation sessions)
+**Phase 5**: CLI Integration (1-2 implementation sessions)
+**Phase 6**: Testing (2-3 implementation sessions)
+**Phase 7**: Documentation (1-2 implementation sessions)
+**Phase 8**: Production (1 implementation session)
 
-## Conclusion
+**Total Estimated Time**: 18-28 LLM implementation sessions
 
-This comprehensive plan provides a structured approach to implementing a robust Ruby wrapper for code-maat. By following TDD principles and clean architecture patterns, we'll create a maintainable, well-tested codebase that provides excellent developer experience while leveraging the proven capabilities of the existing code-maat tool.
+**🎯 Per Session Goals**:
 
-The phased approach allows for incremental delivery and early feedback, while the emphasis on testing ensures reliability and maintainability for long-term success.
+- Complete 1-3 related components
+- All tests passing
+- Code properly structured and documented
+- Ready for next session to build upon
+
+## 🎯 Ready for LLM Implementation
+
+This plan is now optimized for LLM assistant implementation with:
+
+✅ **Clear Task Instructions** - Each phase has specific LLM tasks
+✅ **Exact File Paths** - No ambiguity about where to create files  
+✅ **TDD Workflow** - Strict test-first approach with validation steps
+✅ **Implementation Templates** - Concrete code examples to follow
+✅ **Validation Commands** - Specific commands to verify each step
+✅ **Session-Based Timeline** - Realistic estimates for LLM work sessions
+
+### 🚀 Next Steps for LLM Assistant
+
+1. **Start with Phase 1.1** - Project structure setup
+2. **Follow the TDD cycle** - Red, Green, Refactor, Repeat
+3. **Use validation steps** - Verify each implementation works
+4. **Ask for clarification** - If any requirement is unclear
+5. **Work incrementally** - Complete one component before moving to next
+
+This structured approach ensures high-quality, well-tested code while leveraging the proven capabilities of the existing code-maat tool.
