@@ -1,8 +1,8 @@
-# Code-Maat Ruby Wrapper Implementation Plan
+# CodeMaatClient Ruby Gem Implementation Plan
 
 ## Executive Summary
 
-This plan outlines the implementation of a comprehensive Ruby wrapper library for the `code-maat-1.0.4-standalone.jar` tool. The wrapper will provide a native Ruby interface to all 19 analysis types supported by code-maat, following test-driven development (TDD) principles and clean architecture patterns.
+This plan outlines the implementation of a standalone Ruby gem that provides a client interface to the `code-maat-1.0.4-standalone.jar` tool. The gem will provide a clean, focused Ruby interface to all 19 analysis types supported by code-maat, following test-driven development (TDD) principles and clean architecture patterns. This gem will be consumed by the code-forensics project and can be reused by other projects.
 
 ## 🤖 LLM Assistant Instructions
 
@@ -22,108 +22,178 @@ This plan is designed for step-by-step implementation by an LLM assistant. Each 
 4. **Validate each step** using the acceptance criteria
 5. **Ask for clarification** if any requirement is ambiguous
 
-## Recommendation: Wrapper vs. Rewrite
+## Architecture Decision: Separate Gem vs. Embedded
 
-**Decision: Implement Ruby Wrapper**
+**Decision: Create Standalone `code_maat_client` Gem**
 
 ### Rationale
 
-- **Proven Tool**: Code-maat is mature with 31 Clojure source files and extensive testing
-- **Faster Delivery**: Wrapper can be implemented in weeks vs. months for a rewrite
-- **Lower Risk**: Leverages battle-tested analysis algorithms and VCS parsing
-- **Existing Infrastructure**: Can reuse current GitLog implementation and JAR
-- **Maintenance**: No need to maintain complex statistical analysis code
+- **Reusability**: Other projects can use the wrapper independently
+- **Single Responsibility**: Gem focuses solely on code-maat wrapping
+- **Clean Architecture**: Clear separation between wrapper and application logic
+- **Independent Versioning**: Gem can be versioned and released independently
+- **Community Value**: Potential for community adoption and contribution
+- **Testing Isolation**: Easier to test wrapper functionality in isolation
 
-### Trade-offs Accepted
+### Gem Scope (What's Included)
 
-- JVM dependency (already present)
-- Slightly more complex deployment
-- Less control over low-level optimizations
+✅ **Include in Gem:**
+
+- Pure code-maat JAR client
+- All 19 analysis types
+- JAR execution infrastructure
+- CSV parsing and validation
+- Error handling and logging
+- Ruby-friendly API
+
+❌ **Exclude from Gem:**
+
+- CLI interface (Thor commands)
+- GitLog generation (code-forensics responsibility)
+- Composite analyses (hotspots, etc.)
+- Presentation/formatting layers
+- File system operations beyond JAR execution
+
+### Integration with Code-Forensics
+
+The code-forensics project will consume this gem via Gemfile:
+
+```ruby
+# code-forensics/Gemfile
+gem 'code_maat_client', '~> 1.0'
+
+# Usage in code-forensics
+require 'code_maat_client'
+client = CodeMaatClient.new(jar_path: 'path/to/jar')
+results = client.run_analysis('entity-churn', 'git.log')
+```
 
 ## Architecture Overview
 
+### Gem Architecture (code_maat_client gem)
+
 ```
 ┌─────────────────────────────────────┐
-│          Application Layer          │
-│  (Use Cases & Business Logic)       │
+│            Public API               │
+│       (CodeMaatClient)              │
 ├─────────────────────────────────────┤
-│         Domain Layer               │
-│  (Analysis Types & Value Objects)   │
+│        Analysis Types               │
+│  (Summary, Revisions, Churn, etc.)  │
 ├─────────────────────────────────────┤
-│       Infrastructure Layer         │
-│  (CodeMaat Wrapper & GitLog)       │
+│      Infrastructure Layer          │
+│  (JAR Executor, CSV Parser)         │
 ├─────────────────────────────────────┤
-│       Presentation Layer           │
-│  (CLI Commands & Output Formatters) │
+│         Value Objects               │
+│  (AnalysisResult, Options)          │
 └─────────────────────────────────────┘
 ```
 
-## Phase 1: Foundation and Core Infrastructure
+### Integration with Code-Forensics
 
-### 1.1 Project Structure Setup
+```
+┌─────────────────────────────────────┐
+│       Code-Forensics Project       │
+├─────────────────────────────────────┤
+│      Application Layer              │
+│  (Use Cases & Business Logic)       │
+├─────────────────────────────────────┤
+│        Domain Layer                 │
+│  (Composite Analyses, Hotspots)     │
+├─────────────────────────────────────┤
+│     Infrastructure Layer            │
+│  (GitLog, code_maat_client gem)     │
+├─────────────────────────────────────┤
+│      Presentation Layer             │
+│  (CLI Commands, Formatters)         │
+└─────────────────────────────────────┘
+```
 
-**Deliverable**: Well-organized Ruby gem structure
+## Phase 1: Gem Foundation and Core Infrastructure
 
-**🎯 LLM Task**: Create the following directory structure and files:
+### 1.1 Gem Project Structure Setup
+
+**Deliverable**: Standard Ruby gem structure with clean architecture
+
+**🎯 LLM Task**: Create a new Ruby gem project structure
 
 **Exact Directory Structure to Create**:
 
 ```
-cli/src/code-forensics/
-├── application/
-│   └── use-cases/
-│       ├── run_summary_analysis.rb
-│       ├── run_hotspot_analysis.rb
-│       └── run_comprehensive_analysis.rb
-├── domain/
-│   ├── analysis_types/
-│   │   ├── summary_analysis.rb
-│   │   ├── revisions_analysis.rb
-│   │   ├── authors_analysis.rb
-│   │   └── [... 16 more analysis types]
-│   ├── value_objects/
-│   │   ├── analysis_result.rb
-│   │   ├── file_path.rb
-│   │   ├── date_range.rb
-│   │   └── analysis_options.rb
-│   └── repositories/
-│       └── analysis_repository.rb
-├── infrastructure/
-│   ├── analysers/
-│   │   ├── code_maat_wrapper.rb
-│   │   ├── jar_executor.rb
-│   │   └── csv_parser.rb
-│   └── git_log.rb (existing)
-└── presentation/
-    ├── cli/
-    │   ├── analysis_command.rb
-    │   └── output_formatter.rb
-    └── formatters/
-        ├── table_formatter.rb
-        ├── json_formatter.rb
-        └── csv_formatter.rb
+code_maat_client/                   # New gem root directory
+├── lib/
+│   ├── code_maat_client.rb        # Main entry point
+│   └── code_maat_client/
+│       ├── version.rb
+│       ├── client.rb              # Main API class
+│       ├── analysis_types/
+│       │   ├── base.rb
+│       │   ├── summary.rb
+│       │   ├── revisions.rb
+│       │   ├── authors.rb
+│       │   ├── entity_churn.rb
+│       │   ├── coupling.rb
+│       │   └── [... 14 more analysis types]
+│       ├── infrastructure/
+│       │   ├── jar_executor.rb
+│       │   ├── csv_parser.rb
+│       │   └── command_builder.rb
+│       ├── value_objects/
+│       │   ├── analysis_result.rb
+│       │   ├── analysis_options.rb
+│       │   └── execution_result.rb
+│       └── errors/
+│           ├── base_error.rb
+│           ├── java_not_found_error.rb
+│           ├── jar_not_found_error.rb
+│           └── analysis_error.rb
+├── spec/
+│   ├── spec_helper.rb
+│   ├── code_maat_client/
+│   │   ├── client_spec.rb
+│   │   ├── analysis_types/
+│   │   ├── infrastructure/
+│   │   ├── value_objects/
+│   │   └── errors/
+│   ├── fixtures/
+│   │   ├── sample_git.log
+│   │   └── expected_outputs/
+│   └── integration/
+│       └── full_analysis_spec.rb
+├── vendor/
+│   └── code-maat-1.0.4-standalone.jar
+├── code_maat_client.gemspec
+├── Gemfile
+├── Rakefile
+├── README.md
+├── CHANGELOG.md
+└── .github/
+    └── workflows/
+        └── ci.yml
 ```
 
 **🔍 Validation Steps**:
 
-1. Run `bundle install` successfully
+1. Run `bundle install` successfully in gem directory
 2. All directories exist as specified
-3. Gemspec file is valid (`gem build` passes)
+3. Gemspec file is valid (`gem build code_maat_client.gemspec` passes)
 4. RSpec can be executed (`bundle exec rspec --init`)
+5. Gem can be built and installed locally (`gem install code_maat_client-*.gem`)
 
 **🎯 Specific Files to Create**:
 
-- `cli/Gemfile` - Add rspec, thor, csv gems
-- `cli/code_forensics.gemspec` - Gem specification
-- `cli/lib/code_forensics.rb` - Main entry point
-- `cli/spec/spec_helper.rb` - RSpec configuration
+- `code_maat_client/Gemfile` - Development dependencies (rspec, etc.)
+- `code_maat_client/code_maat_client.gemspec` - Gem specification with JAR included
+- `code_maat_client/lib/code_maat_client.rb` - Main entry point and public API
+- `code_maat_client/spec/spec_helper.rb` - RSpec configuration
+- `code_maat_client/README.md` - Installation and usage instructions
 
 **Acceptance Criteria**:
 
-- [ ] Proper Ruby gem structure with gemspec
-- [ ] Clean architecture folder organization
-- [ ] All dependencies properly declared
-- [ ] README with basic usage instructions
+- [ ] Standard Ruby gem structure with proper gemspec
+- [ ] Clean architecture with focused responsibilities
+- [ ] All dependencies properly declared (including JAR file)
+- [ ] README with installation and usage instructions
+- [ ] Gem builds and installs successfully
 - [ ] All validation steps pass
 
 ### 1.2 Core Value Objects and Domain Models
@@ -134,38 +204,38 @@ cli/src/code-forensics/
 
 **📁 Files to Create** (in this order):
 
-1. `cli/spec/domain/value_objects/analysis_result_spec.rb`
-2. `cli/spec/domain/value_objects/date_range_spec.rb`
-3. `cli/spec/domain/value_objects/analysis_options_spec.rb`
-4. `cli/src/code-forensics/domain/value_objects/analysis_result.rb`
-5. `cli/src/code-forensics/domain/value_objects/date_range.rb`
-6. `cli/src/code-forensics/domain/value_objects/analysis_options.rb`
+1. `code_maat_client/spec/code_maat_client/value_objects/analysis_result_spec.rb`
+2. `code_maat_client/spec/code_maat_client/value_objects/analysis_options_spec.rb`
+3. `code_maat_client/spec/code_maat_client/value_objects/execution_result_spec.rb`
+4. `code_maat_client/lib/code_maat_client/value_objects/analysis_result.rb`
+5. `code_maat_client/lib/code_maat_client/value_objects/analysis_options.rb`
+6. `code_maat_client/lib/code_maat_client/value_objects/execution_result.rb`
 
 **Test Cases to Implement First**:
 
 ```ruby
-# spec/domain/value_objects/analysis_result_spec.rb
-describe AnalysisResult do
+# spec/code_maat_client/value_objects/analysis_result_spec.rb
+describe CodeMaatClient::AnalysisResult do
   it "creates a valid analysis result with data and metadata"
   it "raises error for invalid CSV data"
   it "provides accessor methods for columns"
-  it "converts to hash representation"
+  it "converts to hash and array representations"
 end
 
-# spec/domain/value_objects/date_range_spec.rb
-describe DateRange do
-  it "creates valid date range with start and end dates"
-  it "validates start date is before end date"
-  it "formats dates in ISO8601 format for code-maat"
-  it "handles same start and end dates"
-end
-
-# spec/domain/value_objects/analysis_options_spec.rb
-describe AnalysisOptions do
+# spec/code_maat_client/value_objects/analysis_options_spec.rb
+describe CodeMaatClient::AnalysisOptions do
   it "creates options with default values"
   it "validates supported analysis types"
-  it "handles output file specifications"
+  it "handles JAR execution parameters"
   it "manages filtering and aggregation options"
+end
+
+# spec/code_maat_client/value_objects/execution_result_spec.rb
+describe CodeMaatClient::ExecutionResult do
+  it "captures stdout, stderr, and exit code"
+  it "determines success based on exit code"
+  it "provides helpful error messages"
+  it "handles empty output gracefully"
 end
 ```
 
@@ -183,7 +253,7 @@ end
 3. Refactor and add edge case handling
 4. Add validation and error handling
 
-**🔍 Validation**: All tests pass (`bundle exec rspec spec/domain/value_objects/`)
+**🔍 Validation**: All tests pass (`bundle exec rspec spec/code_maat_client/value_objects/`)
 
 ### 1.3 JAR Executor Infrastructure
 
@@ -193,20 +263,20 @@ end
 
 **📁 Files to Create**:
 
-1. `cli/spec/infrastructure/analysers/jar_executor_spec.rb` (test first)
-2. `cli/src/code-forensics/infrastructure/analysers/jar_executor.rb`
+1. `code_maat_client/spec/code_maat_client/infrastructure/jar_executor_spec.rb` (test first)
+2. `code_maat_client/lib/code_maat_client/infrastructure/jar_executor.rb`
 
 **🔍 Validation Commands**:
 
-- `bundle exec rspec spec/infrastructure/analysers/jar_executor_spec.rb`
+- `bundle exec rspec spec/code_maat_client/infrastructure/jar_executor_spec.rb`
 - `java -version` (must work on system)
-- JAR file exists at `cli/src/code-forensics/infrastructure/analysers/bin/code-maat-1.0.4-standalone.jar`
+- JAR file exists at `code_maat_client/vendor/code-maat-1.0.4-standalone.jar`
 
 **Test Cases**:
 
 ```ruby
-# spec/infrastructure/analysers/jar_executor_spec.rb
-describe JarExecutor do
+# spec/code_maat_client/infrastructure/jar_executor_spec.rb
+describe CodeMaatClient::Infrastructure::JarExecutor do
   context "when JAR file exists" do
     it "executes java command successfully"
     it "captures stdout output"
@@ -231,25 +301,26 @@ end
 **Implementation**:
 
 ```ruby
-class JarExecutor
-  class JavaNotFoundError < StandardError; end
-  class JarNotFoundError < StandardError; end
-  class ExecutionError < StandardError; end
+class CodeMaatClient
+  module Infrastructure
+    class JarExecutor
+      def initialize(jar_path)
+        @jar_path = jar_path
+        validate_prerequisites
+      end
 
-  def initialize(jar_path)
-    @jar_path = jar_path
-    validate_prerequisites
-  end
+      def execute(arguments)
+        # Implementation with proper error handling
+        # Returns ExecutionResult value object
+      end
 
-  def execute(arguments)
-    # Implementation with proper error handling
-  end
+      private
 
-  private
-
-  def validate_prerequisites
-    # Check Java installation
-    # Check JAR file existence
+      def validate_prerequisites
+        # Check Java installation
+        # Check JAR file existence
+      end
+    end
   end
 end
 ```
@@ -274,40 +345,41 @@ end
 
 **📁 File Pattern for Each Analysis**:
 
-- `cli/spec/domain/analysis_types/{name}_analysis_spec.rb` (test first)
-- `cli/src/code-forensics/domain/analysis_types/{name}_analysis.rb`
-- Integration test in `cli/spec/integration/{name}_integration_spec.rb`
+- `code_maat_client/spec/code_maat_client/analysis_types/{name}_spec.rb` (test first)
+- `code_maat_client/lib/code_maat_client/analysis_types/{name}.rb`
+- Integration test in `code_maat_client/spec/integration/{name}_integration_spec.rb`
 
 **Test-First Implementation Pattern**:
 
 ```ruby
-# spec/domain/analysis_types/summary_analysis_spec.rb
-describe SummaryAnalysis do
-  let(:git_log_file) { "path/to/git.log" }
-  let(:analysis) { described_class.new(git_log_file) }
+# spec/code_maat_client/analysis_types/summary_spec.rb
+describe CodeMaatClient::AnalysisTypes::Summary do
+  let(:client) { instance_double(CodeMaatClient) }
+  let(:analysis) { described_class.new(client) }
 
   describe "#run" do
     context "with valid git log" do
-      it "returns summary statistics"
+      it "returns AnalysisResult with summary statistics"
       it "includes number of commits"
       it "includes number of entities"
       it "includes number of authors"
     end
 
     context "with empty git log" do
-      it "returns zero statistics"
+      it "returns empty AnalysisResult"
     end
 
     context "with malformed git log" do
-      it "raises parsing error"
+      it "raises AnalysisError"
     end
   end
 
-  describe "#command_arguments" do
-    it "builds correct code-maat arguments"
-    it "includes analysis type 'summary'"
-    it "includes log file path"
-    it "includes git2 format specifier"
+  describe "#analysis_type" do
+    it "returns 'summary'"
+  end
+
+  describe "#required_columns" do
+    it "returns expected CSV columns"
   end
 end
 ```
@@ -315,33 +387,36 @@ end
 **Implementation Template**:
 
 ```ruby
-module CodeForensics
-  module Domain
-    module AnalysisTypes
-      class SummaryAnalysis
-        include AnalysisBase
+class CodeMaatClient
+  module AnalysisTypes
+    class Summary < Base
+      def analysis_type
+        'summary'
+      end
 
-        def analysis_type
-          'summary'
-        end
+      def required_columns
+        [:statistic, :value]
+      end
 
-        def required_columns
-          [:statistic, :value]
-        end
+      def run(log_file, options = {})
+        # Delegate to client with analysis-specific logic
+        result = @client.execute_analysis(analysis_type, log_file, options)
+        validate_result(result)
+        AnalysisResult.new(result.data, analysis_metadata)
+      end
 
-        def validate_result(csv_data)
-          # Specific validation for summary analysis
-        end
+      private
 
-        private
+      def validate_result(result)
+        # Specific validation for summary analysis
+      end
 
-        def default_options
-          {
-            analysis: analysis_type,
-            log_file: @log_file,
-            format: 'git2'
-          }
-        end
+      def analysis_metadata
+        {
+          analysis_type: analysis_type,
+          required_columns: required_columns,
+          description: "Repository summary statistics"
+        }
       end
     end
   end
@@ -370,46 +445,47 @@ end
 
 **📁 Files to Create**:
 
-1. `cli/spec/infrastructure/analysers/code_maat_wrapper_spec.rb` (test first)
-2. `cli/src/code-forensics/infrastructure/analysers/code_maat_wrapper.rb`
+1. `code_maat_client/spec/code_maat_client/client_spec.rb` (test first)
+2. `code_maat_client/lib/code_maat_client/client.rb`
 
 **🔍 Validation Steps**:
 
-- All tests pass: `bundle exec rspec spec/infrastructure/analysers/code_maat_wrapper_spec.rb`
+- All tests pass: `bundle exec rspec spec/code_maat_client/client_spec.rb`
 - Can list all 19 supported analysis types
 - Validates input parameters correctly
+- Can execute analyses and return structured results
 
 **Test Cases**:
 
 ```ruby
-# spec/infrastructure/analysers/code_maat_wrapper_spec.rb
-describe CodeMaatWrapper do
-  let(:jar_path) { "path/to/code-maat.jar" }
-  let(:wrapper) { described_class.new(jar_path) }
+# spec/code_maat_client/client_spec.rb
+describe CodeMaatClient do
+  let(:jar_path) { "vendor/code-maat-1.0.4-standalone.jar" }
+  let(:client) { described_class.new(jar_path) }
 
   describe "#run_analysis" do
     context "with summary analysis" do
-      it "executes correct command"
-      it "returns parsed CSV data"
-      it "handles empty results"
+      it "executes correct JAR command"
+      it "returns AnalysisResult with parsed CSV"
+      it "handles empty results gracefully"
     end
 
     context "with invalid analysis type" do
-      it "raises unknown analysis error"
+      it "raises AnalysisError"
     end
 
     context "with missing log file" do
-      it "raises file not found error"
+      it "raises appropriate error"
     end
   end
 
-  describe "#available_analyses" do
-    it "returns list of supported analysis types"
+  describe "#supported_analyses" do
+    it "returns list of all 19 analysis types"
   end
 
-  describe "#validate_options" do
-    it "validates required options for each analysis type"
-    it "provides helpful error messages"
+  describe "#analysis_for" do
+    it "returns correct analysis instance for type"
+    it "raises error for unknown analysis type"
   end
 end
 ```
@@ -417,7 +493,7 @@ end
 **Implementation**:
 
 ```ruby
-class CodeMaatWrapper
+class CodeMaatClient
   SUPPORTED_ANALYSES = %w[
     summary revisions authors entity-churn coupling
     main-dev entity-ownership author-churn communication
@@ -426,8 +502,8 @@ class CodeMaatWrapper
     identity soc
   ].freeze
 
-  def initialize(jar_path)
-    @jar_executor = JarExecutor.new(jar_path)
+  def initialize(jar_path = default_jar_path)
+    @jar_executor = Infrastructure::JarExecutor.new(jar_path)
   end
 
   def run_analysis(analysis_type, log_file, options = {})
@@ -435,19 +511,34 @@ class CodeMaatWrapper
     validate_log_file(log_file)
 
     command_args = build_command_arguments(analysis_type, log_file, options)
-    result = @jar_executor.execute(command_args)
+    execution_result = @jar_executor.execute(command_args)
 
-    parse_csv_result(result.stdout)
+    # Parse and return structured result
+    parse_analysis_result(execution_result, analysis_type)
+  end
+
+  def analysis_for(analysis_type)
+    # Return analysis instance for given type
+    # Factory method for analysis types
+    AnalysisTypes.const_get(analysis_type.capitalize).new(self)
+  end
+
+  def supported_analyses
+    SUPPORTED_ANALYSES.dup
   end
 
   private
 
-  def build_command_arguments(analysis_type, log_file, options)
-    # Build array of command line arguments
+  def default_jar_path
+    File.join(__dir__, '..', 'vendor', 'code-maat-1.0.4-standalone.jar')
   end
 
-  def parse_csv_result(csv_output)
-    # Parse CSV and return structured data
+  def build_command_arguments(analysis_type, log_file, options)
+    # Build array of command line arguments for JAR
+  end
+
+  def parse_analysis_result(execution_result, analysis_type)
+    # Parse CSV output and create AnalysisResult
   end
 end
 ```
@@ -484,150 +575,154 @@ describe CsvParser do
 end
 ```
 
-## Phase 4: Application Use Cases
+## Phase 4: Gem Packaging and Distribution
 
-### 4.1 Single Analysis Use Cases
+### 4.1 Gem Specification and Packaging
 
-**Deliverable**: Business logic for individual analyses
+**Deliverable**: Production-ready gem that can be published
 
-**Test Cases**:
+**🎯 LLM Task**: Create proper gem packaging with JAR inclusion
+
+**📁 Files to Create**:
+
+1. `code-maat/code_maat.gemspec` - Complete gem specification
+2. `code-maat/lib/code_maat/version.rb` - Version management
+3. `code-maat/README.md` - Installation and usage documentation
+4. `code-maat/CHANGELOG.md` - Version history
+
+**🔍 Validation Steps**:
+
+- `gem build code_maat.gemspec` succeeds
+- `gem install code_maat-*.gem` works locally
+- JAR file is included in built gem
+- All dependencies are properly declared
+- Documentation is clear and complete
+
+**Gemspec Template**:
 
 ```ruby
-# spec/application/use_cases/run_summary_analysis_spec.rb
-describe RunSummaryAnalysis do
-  let(:git_log_file) { "spec/fixtures/sample.log" }
-  let(:use_case) { described_class.new }
+# code_maat.gemspec
+require_relative 'lib/code_maat/version'
 
-  describe "#execute" do
-    context "with valid input" do
-      it "returns analysis result"
-      it "includes metadata about execution"
-      it "validates input parameters"
-    end
+Gem::Specification.new do |spec|
+  spec.name          = 'code_maat'
+  spec.version       = CodeMaat::VERSION
+  spec.authors       = ['Your Name']
+  spec.email         = ['your.email@example.com']
 
-    context "with date range filtering" do
-      it "filters git log by date range"
-      it "runs analysis on filtered data"
-    end
+  spec.summary       = 'Ruby wrapper for code-maat analysis tool'
+  spec.description   = 'Provides Ruby interface to code-maat JAR for repository analysis'
+  spec.homepage      = 'https://github.com/yourusername/code-maat-ruby'
+  spec.license       = 'MIT'
 
-    context "with invalid git log" do
-      it "raises descriptive error"
-    end
+  spec.files         = Dir['lib/**/*', 'vendor/**/*', 'README.md', 'CHANGELOG.md']
+  spec.require_paths = ['lib']
+
+  spec.add_development_dependency 'rspec', '~> 3.12'
+  spec.add_development_dependency 'rake', '~> 13.0'
+
+  spec.required_ruby_version = '>= 2.7.0'
+end
+```
+
+### 4.2 Public API Documentation
+
+**Deliverable**: Complete API documentation with examples
+
+**🎯 LLM Task**: Create comprehensive README with usage examples
+
+**README Sections**:
+
+- Installation instructions
+- Basic usage examples for each analysis type
+- Configuration options
+- Error handling
+- Contributing guidelines
+- License information
+
+**Usage Examples**:
+
+```ruby
+# Basic usage
+require 'code_maat'
+
+wrapper = CodeMaat::Wrapper.new
+result = wrapper.analysis_for('summary').run('git.log')
+puts result.data
+
+# With options
+result = wrapper.analysis_for('revisions').run('git.log', rows: 20)
+
+# Custom JAR path
+wrapper = CodeMaat::Wrapper.new('/custom/path/to/code-maat.jar')
+```
+
+## Phase 5: Integration with Code-Forensics
+
+### 5.1 Gemfile Integration
+
+**Deliverable**: Integration instructions for code-forensics project
+
+**🎯 LLM Task**: Document how to consume the gem in code-forensics
+
+**Integration Steps**:
+
+1. **Add to code-forensics Gemfile**:
+
+```ruby
+# code-forensics/Gemfile
+gem 'code_maat_client', '~> 1.0'
+# or for local development:
+gem 'code_maat_client', path: '../code_maat_client'
+```
+
+2. **Update code-forensics architecture**:
+
+```ruby
+# code-forensics/src/code-forensics/infrastructure/analysers/code_maat_client_adapter.rb
+require 'code_maat_client'
+
+class CodeMaatClientAdapter
+  def initialize
+    @client = CodeMaatClient.new
+  end
+
+  def run_analysis(type, log_file, options = {})
+    @client.run_analysis(type, log_file, options)
   end
 end
 ```
 
-### 4.2 Comprehensive Analysis Use Cases
-
-**Deliverable**: Complex workflows combining multiple analyses
-
-**Test Cases**:
+3. **Enhance existing use cases**:
 
 ```ruby
-# spec/application/use_cases/run_hotspot_analysis_spec.rb
-describe RunHotspotAnalysis do
-  describe "#execute" do
-    it "combines revisions, authors, and churn analyses"
-    it "identifies high-risk files"
-    it "provides actionable recommendations"
-    it "handles cases with no hotspots"
+# code-forensics/src/code-forensics/application/use-cases/run_summary_analysis.rb
+class RunSummaryAnalysis
+  def initialize(code_maat_adapter = CodeMaatClientAdapter.new)
+    @adapter = code_maat_adapter
   end
-end
 
-# spec/application/use_cases/run_comprehensive_analysis_spec.rb
-describe RunComprehensiveAnalysis do
-  describe "#execute" do
-    it "runs full suite of relevant analyses"
-    it "provides executive summary"
-    it "identifies key findings and recommendations"
-    it "handles large repositories efficiently"
+  def execute(git_log_file, options = {})
+    result = @adapter.run_analysis('summary', git_log_file, options)
+    # Add code-forensics specific business logic
+    present_results(result)
   end
 end
 ```
 
-## Phase 5: CLI Integration
+### 5.2 Migration Guide
 
-### 5.1 Command Line Interface
+**Deliverable**: Step-by-step migration from embedded to gem
 
-**Deliverable**: Thor-based CLI commands
+**Migration Steps**:
 
-**Test Cases**:
+1. Install code_maat_client gem
+2. Remove old JAR wrapper code from code-forensics
+3. Update imports and class references
+4. Test integration thoroughly
+5. Update documentation
 
-```ruby
-# spec/presentation/cli/analysis_command_spec.rb
-describe AnalysisCommand do
-  describe "#summary" do
-    it "runs summary analysis with default options"
-    it "accepts custom date range"
-    it "outputs to specified file"
-    it "displays results in table format"
-  end
-
-  describe "#hotspots" do
-    it "identifies and displays code hotspots"
-    it "accepts threshold parameters"
-    it "provides actionable recommendations"
-  end
-
-  describe "#comprehensive" do
-    it "runs full analysis suite"
-    it "generates executive summary"
-    it "saves results to directory"
-  end
-end
-```
-
-**Implementation**:
-
-```ruby
-class AnalysisCommand < Thor
-  desc "summary", "Generate summary analysis of repository"
-  option :log_file, type: :string, desc: "Path to git log file"
-  option :start_date, type: :string, desc: "Start date (YYYY-MM-DD)"
-  option :end_date, type: :string, desc: "End date (YYYY-MM-DD)"
-  option :output, type: :string, desc: "Output file path"
-
-  def summary
-    # Implementation
-  end
-
-  desc "hotspots", "Identify code hotspots requiring attention"
-  option :threshold, type: :numeric, default: 10, desc: "Minimum revisions threshold"
-
-  def hotspots
-    # Implementation
-  end
-end
-```
-
-### 5.2 Output Formatting
-
-**Deliverable**: Multiple output formats (table, JSON, CSV)
-
-**Test Cases**:
-
-```ruby
-# spec/presentation/formatters/table_formatter_spec.rb
-describe TableFormatter do
-  describe "#format" do
-    it "creates ASCII table from analysis results"
-    it "handles wide content gracefully"
-    it "sorts by specified columns"
-    it "limits rows when requested"
-  end
-end
-
-# spec/presentation/formatters/json_formatter_spec.rb
-describe JsonFormatter do
-  describe "#format" do
-    it "creates valid JSON from analysis results"
-    it "includes metadata about analysis"
-    it "handles nested data structures"
-  end
-end
-```
-
-## Phase 6: Integration and Testing
+## Phase 6: Testing and Quality Assurance
 
 ### 6.1 Integration Tests
 
@@ -638,19 +733,26 @@ end
 ```ruby
 # spec/integration/full_analysis_spec.rb
 describe "Full Analysis Integration" do
-  let(:test_repository) { "spec/fixtures/test_repo" }
+  let(:client) { CodeMaatClient.new }
+  let(:sample_log) { "spec/fixtures/sample_git.log" }
 
-  context "with real git repository" do
+  context "with real git log data" do
     it "runs summary analysis successfully"
-    it "identifies expected hotspots"
+    it "processes all 19 analysis types"
     it "produces consistent results across runs"
-    it "handles edge cases (empty repo, single commit)"
+    it "handles edge cases (empty log, malformed entries)"
   end
 
-  context "with sample log files" do
-    it "processes various log formats correctly"
-    it "handles malformed log entries gracefully"
+  context "with various log formats" do
+    it "processes standard git logs correctly"
+    it "handles logs with special characters gracefully"
     it "produces expected output for known inputs"
+  end
+
+  context "gem integration" do
+    it "can be built and installed as gem"
+    it "includes JAR file in distribution"
+    it "loads successfully when required"
   end
 end
 ```
@@ -845,14 +947,14 @@ end
 
 **🤖 Estimated Time for LLM Assistant**:
 
-**Phase 1**: Foundation (2-3 implementation sessions)
+**Phase 1**: Gem Foundation (2-3 implementation sessions)
 **Phase 2**: Analysis Types (8-12 implementation sessions)  
 **Phase 3**: Wrapper Implementation (2-3 implementation sessions)
-**Phase 4**: Use Cases (1-2 implementation sessions)
-**Phase 5**: CLI Integration (1-2 implementation sessions)
-**Phase 6**: Testing (2-3 implementation sessions)
+**Phase 4**: Gem Packaging (1-2 implementation sessions)
+**Phase 5**: Code-Forensics Integration (1-2 implementation sessions)
+**Phase 6**: Testing & QA (2-3 implementation sessions)
 **Phase 7**: Documentation (1-2 implementation sessions)
-**Phase 8**: Production (1 implementation session)
+**Phase 8**: Publication (1 implementation session)
 
 **Total Estimated Time**: 18-28 LLM implementation sessions
 
@@ -876,10 +978,22 @@ This plan is now optimized for LLM assistant implementation with:
 
 ### 🚀 Next Steps for LLM Assistant
 
-1. **Start with Phase 1.1** - Project structure setup
+1. **Start with Phase 1.1** - Gem project structure setup
 2. **Follow the TDD cycle** - Red, Green, Refactor, Repeat
 3. **Use validation steps** - Verify each implementation works
-4. **Ask for clarification** - If any requirement is unclear
-5. **Work incrementally** - Complete one component before moving to next
+4. **Focus on gem scope** - Pure wrapper, no CLI or use cases
+5. **Test gem integration** - Ensure it works as a dependency
+6. **Document clearly** - Make it easy for code-forensics to consume
 
-This structured approach ensures high-quality, well-tested code while leveraging the proven capabilities of the existing code-maat tool.
+### 📦 Final Deliverable
+
+A standalone Ruby gem that:
+
+- ✅ Wraps all 19 code-maat analysis types
+- ✅ Provides clean, Ruby-friendly API
+- ✅ Includes JAR file in distribution
+- ✅ Has comprehensive test coverage
+- ✅ Can be easily integrated into code-forensics project
+- ✅ Follows Ruby gem best practices
+
+This approach provides maximum flexibility, reusability, and maintainability while keeping responsibilities clearly separated.
